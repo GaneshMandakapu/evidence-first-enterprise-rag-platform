@@ -1,7 +1,7 @@
 # Evidence-First Enterprise RAG Platform
 
-Grounded Document Intelligence with retrieval evaluation, citation traceability,
-and abstention.
+Retrieval evaluation, citation traceability, and abstention for enterprise
+knowledge bases.
 
 A retrieval-augmented generation service that answers natural-language
 questions over an internal knowledge base — and **refuses to answer when
