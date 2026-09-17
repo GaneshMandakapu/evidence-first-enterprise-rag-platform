@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#10231f">
+    <title>Evidence-First Enterprise RAG Platform</title>
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="Evidence-First home">
+          <span class="brand-mark">EF</span>
+          <span>Evidence-First<span class="brand-muted"> / RAG Platform</span></span>
+        </a>
+        <div class="topbar-actions">
+          <span class="status-pill"><span class="status-dot" id="status-dot"></span><span id="status-text">Checking system</span></span>
+          <a class="docs-link" href="/docs" target="_blank" rel="noreferrer">API docs <span aria-hidden="true">↗</span></a>
+        </div>
+      </header>
+
+      <main>
+        <section class="intro reveal">
+          <p class="eyebrow">Grounded document intelligence</p>
+          <h1>Ask the knowledge base.<br><em>See the evidence.</em></h1>
+          <p class="intro-copy">Answers are only returned when the indexed documents can support them. Every grounded response keeps its trail back to the source.</p>
+        </section>
+
+        <section class="workspace reveal reveal-delay-1">
+          <div class="query-panel panel">
+            <div class="panel-heading">
+              <div>
+                <p class="panel-kicker">Knowledge query</p>
+                <h2>What do you need to know?</h2>
+              </div>
+              <span class="model-chip" id="model-chip">Local stack</span>
+            </div>
+            <form id="query-form">
+              <label class="sr-only" for="question">Ask a question</label>
+              <textarea id="question" rows="4" minlength="3" placeholder="Ask about remote work, onboarding, security, or the product..." required></textarea>
+              <div class="query-footer">
+                <div class="examples" aria-label="Example questions">
+                  <button type="button" class="example" data-question="How many days per week can I work remotely?">Remote work</button>
+                  <button type="button" class="example" data-question="What should I do if I suspect a security incident?">Security incident</button>
+                  <button type="button" class="example" data-question="What is the onboarding process?">Onboarding</button>
+                </div>
+                <button class="primary-button" type="submit" id="ask-button"><span>Ask the evidence base</span><span aria-hidden="true">→</span></button>
+              </div>
+            </form>
+            <p class="error-message" id="error-message" role="alert" hidden></p>
+          </div>
+
+          <aside class="settings-panel panel">
+            <div class="panel-heading compact">
+              <div>
+                <p class="panel-kicker">Runtime</p>
+                <h2>System posture</h2>
+              </div>
+              <span class="pulse-icon" aria-hidden="true">◌</span>
+            </div>
+            <dl class="runtime-list">
+              <div><dt>Indexed chunks</dt><dd id="index-size">—</dd></div>
+              <div><dt>Vector store</dt><dd id="vector-store">—</dd></div>
+              <div><dt>Generation</dt><dd id="llm-provider">—</dd></div>
+            </dl>
+            <div class="settings-divider"></div>
+            <label class="field-label" for="api-key">API key</label>
+            <div class="key-input">
+              <input id="api-key" type="password" value="change-me-local-dev-key" autocomplete="off">
+              <button type="button" id="toggle-key" class="icon-button" aria-label="Show API key">◉</button>
+            </div>
+            <button type="button" class="secondary-button" id="ingest-button"><span>↻</span> Refresh document index</button>
+            <p class="muted-note" id="ingest-status">Local demo controls are connected to the live API.</p>
+          </aside>
+        </section>
+
+        <section class="result-section reveal reveal-delay-2" id="result-section" hidden>
+          <div class="result-heading">
+            <div>
+              <p class="panel-kicker">Response</p>
+              <h2 id="result-title">Grounded answer</h2>
+            </div>
+            <span class="grounding-badge" id="grounding-badge">Grounded</span>
+          </div>
+          <div class="answer-card" id="answer-card">
+            <div class="answer-rule"></div>
+            <p id="answer-text"></p>
+          </div>
+          <div class="citations-block" id="citations-block">
+            <div class="citations-heading"><h3>Evidence trail</h3><span id="citation-count"></span></div>
+            <div class="citation-grid" id="citation-grid"></div>
+          </div>
+        </section>
+
+        <section class="empty-state reveal reveal-delay-2" id="empty-state">
+          <span class="empty-mark">✦</span>
+          <p>Responses will appear here with their supporting passages.</p>
+        </section>
+      </main>
+
+      <footer><span>Evidence-First Enterprise RAG Platform</span><span>Abstention is a feature.</span></footer>
+    </div>
+    <script src="/static/app.js" defer></script>
+  </body>
+</html>

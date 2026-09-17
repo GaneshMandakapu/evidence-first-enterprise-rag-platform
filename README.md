@@ -119,6 +119,11 @@ python scripts/ingest.py            # builds the TF-IDF + FAISS index from data/
 uvicorn app.main:app --reload       # http://localhost:8000/docs
 ```
 
+Open [http://localhost:8000](http://localhost:8000) for the interactive demo.
+It provides live health status, document re-indexing, grounded answers, and an
+evidence trail for every supported response. The API remains available at
+`/docs` for direct integration testing.
+
 ```bash
 curl -X POST http://localhost:8000/query \
   -H "Content-Type: application/json" \

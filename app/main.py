@@ -1,8 +1,10 @@
-"""FastAPI entrypoint — wires config, embedding provider and LLM provider
-into a RAGPipeline, and exposes /health, /ingest, /query."""
+"""FastAPI entrypoint — wires providers into the RAG pipeline and serves the demo."""
 from __future__ import annotations
 
+from pathlib import Path
+
 from fastapi import Depends, FastAPI, Header, HTTPException, status
+from fastapi.staticfiles import StaticFiles
 
 from app.config import settings
 from app.models.schemas import HealthResponse, IngestResponse, QueryRequest, QueryResponse
@@ -47,3 +49,8 @@ def ingest(directory: str = "data/sample_docs") -> IngestResponse:
 @app.post("/query", response_model=QueryResponse, dependencies=[Depends(require_api_key)])
 def query(request: QueryRequest) -> QueryResponse:
     return pipeline.query(request.question, top_k=request.top_k)
+
+
+_static_directory = Path(__file__).parent / "static"
+app.mount("/static", StaticFiles(directory=_static_directory), name="static")
+app.mount("/", StaticFiles(directory=_static_directory, html=True), name="demo")
