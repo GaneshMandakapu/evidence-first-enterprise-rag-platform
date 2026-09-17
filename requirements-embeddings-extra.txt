@@ -1,0 +1,4 @@
+# Optional upgrade: true semantic embeddings instead of the default TF-IDF
+# provider. Pulls in torch + transformers (large download). Enable with
+# EMBEDDING_PROVIDER=sentence_transformer in .env after installing this.
+sentence-transformers==3.1.1
